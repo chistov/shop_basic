@@ -1,0 +1,149 @@
+<html ng-app="demo" ng-controller="dropdownCtrl" class="ng-scope">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-default">
+  <div  class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <dropdown  placeholder="{{colour}}" list="colours" selected="colour" property="name" class="btn" ></dropdown>
+    <dropup placeholder="{{currCategory}}" list="thing" selected="currCategory" property="name" class="btn"></dropdown>
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="switch_animation.css"> -->
+    <style type="text/css">
+      @charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide
+      {
+        display:none !important;
+      }
+      ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+    </style>
+    <meta name="viewport" content="width=device-width">
+    <title text="">Angular JS Dropdown Demo</title>
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css">
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+
+    <script type="text/javascript" src="./main.js"></script>
+  </head>
+
+<div class="container">
+      <div class="row">
+        <div class="col-md-4 sm-title">
+          Online Store        </div>
+        <div class="col-md-8">
+          <div id="second-menu-list">
+            <div id="cart-wrap"  class="ng-scope">
+              <div class="total-wrap">
+                <div class="cart-button">
+                  <div class="total-count-wr" style="display: block;">
+                  </div>
+                  <div class="cart-table" ng-hide="Cart.totalPrice() == 0">
+                    <div class="cart-table-items">
+                      <!-- ngRepeat: (key, item) in Cart.items --><div class="row prod-row ng-scope" >
+                        <div class="col-xs-8 prod-name ng-binding">
+                          Artec Studio 11 Ultimate
+                          <div class="text-gray ng-binding">1 license</div>
+                        </div>
+                        <div class="col-xs-1 prod-amount ng-binding">
+                          2
+                        </div>
+                        <div class="col-xs-3 prod-total ng-binding">
+                          €1600
+                          <a ng-click="Cart.removeItem(item.CODE)"></a>
+                        </div>
+                      </div><!-- end ngRepeat: (key, item) in Cart.items -->
+                    </div>
+                    <div class="cart-total ng-binding">
+                      €1600
+                    </div>
+                    
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  <body  class="ng-scope" >
+
+  <div class="container"> 
+
+
+  <div class="row" >
+
+
+    <div class="col-sm-6 col-md-4" >
+    <span id="selected">Shopping Cart: <b style="color: #07BA16" class="ng-binding">{{colour.name}}</b></span>
+
+
+
+    <div class="animate-switch-container" ng-switch on="currCategory">
+
+      <div class="animate-switch" ng-switch-when="Cat_1">
+        <div  ng-repeat="item in colours" class="thumbnail">
+          <img src="imgs/school_pc.png" alt="Computer__" width="150" height="100">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>{{item.name}}</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="animate-switch" ng-switch-when="Cat_2">
+        <div  ng-repeat="item in thing" class="thumbnail">
+          <img src="imgs/computer.png" alt="Computer__" width="150" height="100">
+          <div class="caption">
+            <h3>Thumbnail label</h3>
+            <p>{{item.name}}</p>
+            <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+  </body>
+</html>
