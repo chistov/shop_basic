@@ -6,7 +6,7 @@
   </div>
   <div class="dropdown-list">
     <div>
-      <div ng-repeat="item in thing" ng-click="select(item)" ng-class="{ selected: isSelected(item) }">
+      <div ng-repeat="item in currCategories" ng-click="select(item)" ng-class="{ selected: isSelected(item) }">
         <span>{{property !== undefined ? item[property] : item}}</span>
         <i class="fa fa-check"></i>
       </div>

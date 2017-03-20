@@ -7,66 +7,92 @@ app.run(function($rootScope) {
   });
 });
 
-app.controller('dropdownCtrl', function($rootScope, $scope){
-  $scope.colours = [{
-    name: "Red",
-    hex: "#F21B1B"
-  }, {
-    name: "Blue",
-    hex: "#1B66F2"
-  }, {
-    name: "Green",
-    hex: "#07BA16"
+app.controller('productsCtrl', function($rootScope, $scope){
+  $scope.products = [{
+    name: "Computers"
+    }, {
+    name: "Phones"
   }];
-  $scope.colour = $scope.colours[1];
+  $scope.product = $scope.products[0];
 
-  $scope.thing = [{
-    name: "Cat_1",
-    value: true
-  }, {
-    name: "Cat_2",
-    hex: false
-  }, {
-    name: "Cat_3",
-    hex: false
-  }];
-  $scope.colour1 = $scope.thing[0];
-
-  $scope.bcp = [{
-    name: "Grad",
-    value: true
-  }, {
-    name: "Gh",
-    hex: false
-  }, {
-    name: "PPP",
-    hex: false
+  $scope.compCategory = [{
+    name: "Laptop"
+    }, {
+    name: "TabletPC"
   }];
 
-  $scope.currCategory = $scope.thing[0].name;
+  $scope.phonesCategory = [{
+    name: "MobilePhones"
+    }, {
+    name: "SmartPhones"
+  }];
 
+  $scope.laptops = [{
+    name: "Dell",
+    price: 30
+    }, {
+    name: "Samsung",
+    price: 20
+  }];
 
-  $scope.f = function(){
-      $scope.colours[1].name = "GG"; console.log("GGGG");
-  };
+  $scope.tabletpcs = [{
+    name: "HP Compaq",
+    price: 40
+    }, {
+    name: "Apple iPad",
+    price: 50
+  }];
 
-  $scope.choose = function(category){
-    console.log('choose', category);
-    $scope.currCategory = category;
+  $scope.mobilePhones = [{
+    name: "Nokia",
+    price: 350
+    }, {
+    name: "Motorola",
+    price: 450
+  }];
+
+  $scope.smartphones = [{
+    name: "iPhone",
+    price: 550
+    }, {
+    name: "HTC",
+    price: 250
+  }];
+
+  $scope.currCategories = $scope.compCategory; // curr list
+  $scope.currCategory = $scope.compCategory[0]; // curr element
+
+  $scope.cart = {};
+  $scope.cart.totalPrice = 0;
+  $scope.cart.itemsTotalCount = 0;
+
+  $scope.cartAdd = function(item){
+    ++$scope.cart.itemsTotalCount;
+    console.log('ssss',item);
+    if( item.name in $scope.cart){
+      console.log('found');
+      ++$scope.cart[item.name];
+    }
+    else{
+      console.log('not found');
+      $scope.cart[item.name] = 0;
+    }
+    $scope.cart.totalPrice += item.price;
+    console.log('card', $scope.card);
   }
 });
 
-app.directive("dropdown", function($rootScope) {
+app.directive("products", function($rootScope) {
   return {
     restrict: "E",
-    templateUrl: "templates/dropdown.html",
+    templateUrl: "templates/products.html",
     scope: {
       placeholder: "@",
       list: "=",
       selected: "=",
       property: "@"
     },
-    controller: 'dropdownCtrl',
+    controller: 'productsCtrl',
     link: function(scope,element, attrs, ctrl ) {
       scope.listVisible = false;
       scope.isPlaceholder = true;
@@ -74,28 +100,14 @@ app.directive("dropdown", function($rootScope) {
       scope.select = function(item) {
         console.log('select', item);
         console.log('scope', scope);
-        console.log('thing', scope.thing);
-        scope.list[0].name = "Ios";
+        // scope.list[0].name = "Ios";
         
         console.log('list', scope.list);
         scope.isPlaceholder = false;
         scope.selected = item;
-        scope.colour = item;
-        if(scope.colour.name == "Green"){
-          scope.thing[0].name = "Gui";
-          $rootScope.$broadcast("menuChanged", "IOS");
-        }
-
+        scope.product = item;
+        $rootScope.$broadcast("menuChanged", item.name);
         
-        // scope.$apply(function() {
-        //     scope.colour = item;//scope.listVisible = false;
-        //   });
-
-        if(item.name == 'Green'){
-          scope.f();
-          console.log('parse', scope.thing);
-          console.log('parse___1', scope.bcp);
-        }
       };
 
       scope.isSelected = function(item) {
@@ -125,27 +137,27 @@ app.directive("dropdown", function($rootScope) {
   }
 });
 
-app.directive("dropup", function($rootScope) {
+app.directive("categories", function($rootScope) {
   return {
     restrict: "E",
-    templateUrl: "templates/dropup.html",
+    templateUrl: "templates/categories.html",
     scope: {
       placeholder: "@",
       list: "=",
       selected: "=",
       property: "@"
     },
-    controller: 'dropdownCtrl',
+    controller: 'productsCtrl',
     link: function(scope) {
       scope.listVisible = false;
       scope.isPlaceholder = true;
 
       scope.select = function(item) {
         console.log('select', item);
-        console.log('scope', scope.thing);
         scope.isPlaceholder = false;
-        scope.selected = item.name;
-        scope.choose(item.name);
+        scope.selected = item;
+        scope.currCategory = item;
+        console.log('category', scope.currCategory);
       };
 
       scope.isSelected = function(item) {
@@ -168,8 +180,20 @@ app.directive("dropup", function($rootScope) {
       scope.$on("menuChanged", function(event, data) {
         console.log('event__', event);
         console.log('value__', data);
-        scope.list = scope.bcp;
-        scope.selected = scope.bcp[0];
+        scope.list = scope.phonesCategory;
+
+        if(data == 'Computers'){
+          scope.currCategories = scope.compCategory; // curr list
+          scope.list = scope.compCategory; // curr list
+          scope.selected = scope.compCategory[0];
+          // scope.currCategory = scope.compCategory[0].name; // curr element
+        }
+        else if(data == 'Phones'){
+          scope.currCategories = scope.phonesCategory; // curr list
+          scope.list = scope.phonesCategory; // curr list
+          scope.selected = scope.phonesCategory[0];
+          // scope.currCategory = scope.phonesCategory[0].name; // curr element
+        }
       });
 
       scope.$watch("selected", function(value) {
