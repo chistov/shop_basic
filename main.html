@@ -9,25 +9,24 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<nav class="navbar-fixed-top navbar-default">
-  <div  class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
+  <nav class="navbar-fixed-top navbar-default">
+    <div  class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
 
-    <div class="navbar-brand"> Products: </div>
-    <products  placeholder="{{product}}" list="products" selected="product" property="name" class="btn" ></products>
-    <div class="navbar-brand"> Categories: </div>
-    <categories placeholder="{{currCategory}}" list="currCategories" selected="currCategory" property="name" class="btn"></categories>
-    <div class="navbar-brand">Online Store</div>
-    <div class="navbar-brand navbar-right">
-      Items: {{cart.itemsTotalCount}}
+      <div class="navbar-brand"> Products: </div>
+      <products  placeholder="{{product}}" list="products" selected="product" property="name" class="btn" ></products>
+      <div class="navbar-brand"> Categories: </div>
+      <categories placeholder="{{currCategory}}" list="currCategories" selected="currCategory" property="name" class="btn"></categories>
+      <div class="navbar-brand">Online Store</div>
+      <div class="navbar-brand navbar-right">
+        Items: {{cart.itemsTotalCount}}
+      </div>
+      <div style="text-align: right" class="navbar-brand navbar-right">Total: ${{cart.totalPrice}} </div>
     </div>
-    <div style="text-align: right" class="navbar-brand navbar-right">Total: ${{cart.totalPrice}} </div>
-  </div>
-</nav>
-
+  </nav>
 
 
   <head>
@@ -59,9 +58,9 @@
 
           <div class="animate-switch" ng-switch-when="Laptop">
             <div  ng-repeat="item in laptops" class="thumbnail">
-              <img src="imgs/school_pc.png" alt="Computer__" width="150" height="100"></img>
+              <img class="polaroid" src="imgs/school_pc.png" alt="Computer__" width="150" height="100"></img>
               <div id="_picture" style="background-color: #555555" class="caption">
-                <h3 style="color: white">{{item.name}}: ${{item.price}}</h3>
+                <h3  style="color: white">{{item.name}}: ${{item.price}}</h3>
                 <div><button class="btn btn-red" ng-click="cartAdd(item)" >Add to cart</button></div>
               </div>
             </div>
@@ -69,7 +68,7 @@
 
           <div class="animate-switch" ng-switch-when="TabletPC">
             <div  ng-repeat="item in tabletpcs" class="thumbnail">
-              <img src="imgs/computer.png" alt="Computer__" width="150" height="100"></img>
+              <img class="polaroid" src="imgs/computer.png" alt="Computer__" width="150" height="100"></img>
               <div id="_picture" style="background-color: #555555" class="caption">
                 <h3 style="color: white">{{item.name}}: ${{item.price}}</h3>
                 <div><button class="btn btn-red" ng-click="cartAdd(item)" >Add to cart</button></div>
@@ -81,17 +80,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
   </div>
 
 

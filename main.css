@@ -1,9 +1,20 @@
+
+img.polaroid {  
+    background:#000; /*Смените его на фоновое изображение или удалите*/  
+    border:solid #fff;  
+    border-width:6px 6px 20px 6px;  
+    box-shadow:1px 1px 5px #333; /* Стандартное размытие на 5px. Для пущей глубины увеличьте его */  
+    -webkit-box-shadow:1px 1px 5px #333;  
+    -moz-box-shadow:1px 1px 5px #333;  
+    height:200px; /* Установите на высоту своего изображения или нужного div’а*/  
+    width:200px; /* Установите на ширину своего изображения или нужного div’а */  
+}
+
 body {
   font-family: Arial;
   font-size: 14px;
   padding-top: 250px;
 }
-
 button {
     background-color: #f44336; /* red */
     color: white; /* red */
